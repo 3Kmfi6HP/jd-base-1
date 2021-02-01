@@ -18,7 +18,7 @@ async function update() {
     if (fs.existsSync('new_task')) {
       const newTaskContent = await fs.readFileSync('./new_task', 'utf8');
       if (newTaskContent) {
-        await notify.sendNotify('新增薅羊毛任务通知', newTaskContent);
+        await notify.sendNotify('新增任务通知', newTaskContent);
       }
     }
 
