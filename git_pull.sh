@@ -2,9 +2,12 @@
 
 ## Author: Evine Deng
 ## Source: https://github.com/EvineDeng/jd-base
-## Modified： 2021-01-22
-## Version： v3.6.1
-
+## Mod: https://github.com/3Kmfi6HP/jd-base-1
+## Modified： 2021-02-23
+## Version： alpha
+# git remote set-url origin git@gitee.com:lxk0301/jd_scripts.git
+KEY="-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn\nNhAAAAAwEAAQAAAQEAvRQk2oQqLB01iVnJKrnI3tTfJyEHzc2ULVor4vBrKKWOum4dbTeT\ndNWL5aS+CJso7scJT3BRq5fYVZcz5ra0MLMdQyFL1DdwurmzkhPYbwcNrJrB8abEPJ8ltS\nMoa0X9ecmSepaQFedZOZ2YeT/6AAXY+cc6xcwyuRVQ2ZJ3YIMBrRuVkF6nYwLyBLFegzhu\nJJeU5o53kfpbTCirwK0h9ZsYwbNbXYbWuJHmtl5tEBf2Hz+5eCkigXRq8EhRZlSnXfhPr2\n32VCb1A/gav2/YEaMPSibuBCzqVMVruP5D625XkxMdBdLqLBGWt7bCas7/zH2bf+q3zac4\nLcIFhkC6XwAAA9BjE3IGYxNyBgAAAAdzc2gtcnNhAAABAQC9FCTahCosHTWJWckqucje1N\n8nIQfNzZQtWivi8GsopY66bh1tN5N01YvlpL4ImyjuxwlPcFGrl9hVlzPmtrQwsx1DIUvU\nN3C6ubOSE9hvBw2smsHxpsQ8nyW1IyhrRf15yZJ6lpAV51k5nZh5P/oABdj5xzrFzDK5FV\nDZkndggwGtG5WQXqdjAvIEsV6DOG4kl5TmjneR+ltMKKvArSH1mxjBs1tdhta4kea2Xm0Q\nF/YfP7l4KSKBdGrwSFFmVKdd+E+vbfZUJvUD+Bq/b9gRow9KJu4ELOpUxWu4/kPrbleTEx\n0F0uosEZa3tsJqzv/MfZt/6rfNpzgtwgWGQLpfAAAAAwEAAQAAAQEAnMKZt22CBWcGHuUI\nytqTNmPoy2kwLim2I0+yOQm43k88oUZwMT+1ilUOEoveXgY+DpGIH4twusI+wt+EUVDC3e\nlyZlixpLV+SeFyhrbbZ1nCtYrtJutroRMVUTNf7GhvucwsHGS9+tr+96y4YDZxkBlJBfVu\nvdUJbLfGe0xamvE114QaZdbmKmtkHaMQJOUC6EFJI4JmSNLJTxNAXKIi3TUrS7HnsO3Xfv\nhDHElzSEewIC1smwLahS6zi2uwP1ih4fGpJJbU6FF/jMvHf/yByHDtdcuacuTcU798qT0q\nAaYlgMd9zrLC1OHMgSDcoz9/NQTi2AXGAdo4N+mnxPTHcQAAAIB5XCz1vYVwJ8bKqBelf1\nw7OlN0QDM4AUdHdzTB/mVrpMmAnCKV20fyA441NzQZe/52fMASUgNT1dQbIWCtDU2v1cP6\ncG8uyhJOK+AaFeDJ6NIk//d7o73HNxR+gCCGacleuZSEU6075Or2HVGHWweRYF9hbmDzZb\nCLw6NsYaP2uAAAAIEA3t1BpGHHek4rXNjl6d2pI9Pyp/PCYM43344J+f6Ndg3kX+y03Mgu\n06o33etzyNuDTslyZzcYUQqPMBuycsEb+o5CZPtNh+1klAVE3aDeHZE5N5HrJW3fkD4EZw\nmOUWnRj1RT2TsLwixB21EHVm7fh8Kys1d2ULw54LVmtv4+O3cAAACBANkw7XZaZ/xObHC9\n1PlT6vyWg9qHAmnjixDhqmXnS5Iu8TaKXhbXZFg8gvLgduGxH/sGwSEB5D6sImyY+DW/OF\nbmIVC4hwDUbCsTMsmTTTgyESwmuQ++JCh6f2Ams1vDKbi+nOVyqRvCrAHtlpaqSfv8hkjK\npBBqa/rO5yyYmeJZAAAAFHJvb3RAbmFzLmV2aW5lLnByZXNzAQIDBAUG\n-----END OPENSSH PRIVATE KEY-----"
+mkdir -p /root/.ssh && echo -e $KEY > /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa && ssh-keyscan gitee.com > /root/.ssh/known_hosts
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
 [[ ${JD_DIR} ]] && ShellJd=jd || ShellJd=${ShellDir}/jd.sh
@@ -12,7 +15,6 @@ LogDir=${ShellDir}/log
 [ ! -d ${LogDir} ] && mkdir -p ${LogDir}
 ScriptsDir=${ShellDir}/scripts
 Scripts2Dir=${ShellDir}/scripts2
-Scripts3Dir=${ShellDir}/scripts3
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
 FileDiy=${ConfigDir}/diy.sh
@@ -30,17 +32,29 @@ ContentDropTask=${ShellDir}/drop_task
 SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 WhichDep=$(grep "/jd-base" "${ShellDir}/.git/config")
-Scripts2URL=https://github.com/Tartarus2014/Script
-Scripts3URL=https://github.com/Tartarus2014/Script
-#https://github.com/shylocks/Loon
+Scripts2URL=https://github.com/shylocks/Loon
 
 if [[ ${WhichDep} == *github* ]]; then
-  ScriptsURL=https://github.com/LXK9301/jd_scripts
+  ScriptsURL=git@gitee.com:lxk0301/jd_scripts
   ShellURL=https://github.com/3Kmfi6HP/jd-base-1
 else
-  ScriptsURL=https://gitee.com/lxk0301/jd_scripts
+  ScriptsURL=git@gitee.com:lxk0301/jd_scripts
   ShellURL=https://github.com/3Kmfi6HP/jd-base-1
 fi
+
+## 更新crontab，gitee服务器同一时间限制5个链接，因此每个人更新代码必须错开时间，每次执行git_pull随机生成。
+## 每天5-23点更新,(分.sleep延迟)为随机cron
+function Update_Cron {
+  if [ -f ${ListCron} ]; then
+    RanHour=$(((RANDOM % 6)+7))
+    ranH=$(((RANDOM % 6)+14))
+    RanMin=$((${RANDOM} % 60))
+    RanSleep=$((${RANDOM} % 56))
+    H="${RanHour},${ranH}"
+    perl -i -pe "s|.+(bash ${ShellDir}/git_pull.+)|${RanMin} 5-23 \* \* \* sleep ${RanSleep} && \1|" ${ListCron}
+    crontab ${ListCron}
+  fi
+}
 
 ## 更新shell脚本
 function Git_PullShell {
@@ -80,13 +94,6 @@ function Git_CloneScripts2 {
 ## 更新scripts2
 function Git_PullScripts2 {
   echo -e "更新shylocks脚本，原地址：${Scripts2URL}\n"
-  cd ${Scripts2Dir}
-  git fetch --all
-  ExitStatusScripts2=$?
-  git reset --hard origin/main
-  echo
-#更新shylocks的红包雨
-  echo -e "更新红包雨新脚本，原地址：${Scripts3URL}\n"
   cd ${Scripts2Dir}
   git fetch --all
   ExitStatusScripts2=$?
@@ -161,14 +168,14 @@ function Diff_Cron {
 ## 发送删除失效定时任务的消息
 function Notify_DropTask {
   cd ${ShellDir}
-  node update_tg.js
+  node update.js
   [ -f ${ContentDropTask} ] && rm -f ${ContentDropTask}
 }
 
 ## 发送新的定时任务消息
 function Notify_NewTask {
   cd ${ShellDir}
-  node update_tg.js
+  node update.js
   [ -f ${ContentNewTask} ] && rm -f ${ContentNewTask}
 }
 
@@ -183,7 +190,7 @@ function Notify_Version {
       echo -e "检测到配置文件config.sh.sample有更新\n\n更新日期: ${UpdateDate}\n当前版本: ${VerConf}\n新的版本: ${VerConfSample}\n更新内容: ${UpdateContent}\n\n如需使用新功能按该文件前几行注释操作，否则请无视本消息。\n" | tee ${ContentVersion}
       echo -e "本消息只在该新版本配置文件更新当天发送一次，脚本地址：${ShellURL}" >> ${ContentVersion}
       cd ${ShellDir}
-      node update_tg.js
+      node update.js
       if [ $? -eq 0 ]; then
         echo "${VerConfSample}" > ${SendCount}
         [ -f ${ContentVersion} ] && rm -f ${ContentVersion}
@@ -259,7 +266,7 @@ function Output_ListJsDrop {
 }
 
 ## 自动删除失效的脚本与定时任务，需要5个条件：1.AutoDelCron 设置为 true；2.正常更新js脚本，没有报错；3.js-drop.list不为空；4.crontab.list存在并且不为空；5.已经正常运行过npm install
-## 检测文件：LXK9301/jd_scripts 仓库中的 docker/crontab_list.sh，和 shylocks/Loon 仓库中的 docker/crontab_list.sh
+## 检测文件：LXK9301/jd_scripts 仓库中的 docker/crontab_list.sh
 ## 如果检测到某个定时任务在上述检测文件中已删除，那么在本地也删除对应定时任务
 function Del_Cron {
   if [ "${AutoDelCron}" = "true" ] && [ -s ${ListJsDrop} ] && [ -s ${ListCron} ] && [ -d ${ScriptsDir}/node_modules ]; then
@@ -276,14 +283,14 @@ function Del_Cron {
     crontab -l
     echo -e "\n--------------------------------------------------------------\n"
     if [ -d ${ScriptsDir}/node_modules ]; then
-      echo -e "jd-base脚本成功删除失效的定时任务：\n\n${JsDrop}\n\n脚本地址：${ShellURL}" > ${ContentDropTask}
+      echo -e "删除失效的定时任务：\n\n${JsDrop}" > ${ContentDropTask}
       Notify_DropTask
     fi
   fi
 }
 
 ## 自动增加新的定时任务，需要5个条件：1.AutoAddCron 设置为 true；2.正常更新js脚本，没有报错；3.js-add.list不为空；4.crontab.list存在并且不为空；5.已经正常运行过npm install
-## 检测文件：LXK9301/jd_scripts 仓库中的 docker/crontab_list.sh，和 shylocks/Loon 仓库中的 docker/crontab_list.sh
+## 检测文件：LXK9301/jd_scripts 仓库中的 docker/crontab_list.sh
 ## 如果检测到检测文件中增加新的定时任务，那么在本地也增加
 ## 本功能生效时，会自动从检测文件新增加的任务中读取时间，该时间为北京时间
 function Add_Cron {
@@ -299,7 +306,7 @@ function Add_Cron {
       then
         echo "4 0,9 * * * bash ${ShellJd} ${Cron}" >> ${ListCron}
       else
-        cat ${ListCronLxk} ${ListCronShylocks} | grep -E "\/${Cron}\." | perl -pe "s|(^.+)node */scripts/(j[drx]_\w+)\.js.+|\1bash ${ShellJd} \2|" >> ${ListCron}
+        cat ${ListCronLxk}| grep -E "\/${Cron}\." | perl -pe "s|(^.+)node */scripts/(j[drx]_\w+)\.js.+|\1bash ${ShellJd} \2|" >> ${ListCron}
       fi
     done
 
@@ -310,22 +317,17 @@ function Add_Cron {
       crontab -l
       echo -e "\n--------------------------------------------------------------\n"
       if [ -d ${ScriptsDir}/node_modules ]; then
-        echo -e "jd-base脚本成功添加新的定时任务：\n\n${JsAdd}\n\n脚本地址：${ShellURL}" > ${ContentNewTask}
+        echo -e "成功添加新的定时任务：\n\n${JsAdd}" > ${ContentNewTask}
         Notify_NewTask
       fi
     else
       echo -e "添加新的定时任务出错，请手动添加...\n"
       if [ -d ${ScriptsDir}/node_modules ]; then
-        echo -e "jd-base脚本尝试自动添加以下新的定时任务出错，请手动添加：\n\n${JsAdd}" > ${ContentNewTask}
+        echo -e "尝试自动添加以下新的定时任务出错，请手动添加：\n\n${JsAdd}" > ${ContentNewTask}
         Notify_NewTask
       fi
     fi
   fi
-}
-
-## 更新crontab
-function Update_Cron {
-  crontab ${ListCron}
 }
 
 ## 在日志中记录时间与路径
@@ -354,15 +356,13 @@ then
 else
   echo -e "\nshell脚本更新失败，请检查原因后再次运行git_pull.sh，或等待定时任务自动再次运行git_pull.sh...\n"
 fi
-
+## 更新crontab
+[[ $(date "+%-H") -le 2 ]] && Update_Cron
 ## 克隆或更新js脚本
 if [ ${ExitStatusShell} -eq 0 ]; then
   echo -e "--------------------------------------------------------------\n"
   [ -f ${ScriptsDir}/package.json ] && PackageListOld=$(cat ${ScriptsDir}/package.json)
   [ -d ${ScriptsDir}/.git ] && Git_PullScripts || Git_CloneScripts
-  [ -d ${Scripts2Dir}/.git ] && Git_PullScripts2 || Git_CloneScripts2
-  cp -f ${Scripts2Dir}/jd_*.js ${ScriptsDir}  
-  cp -f /home/jd2/scripts3/jd_*.js ${ScriptsDir}
 fi
 
 ## 执行各函数
@@ -372,7 +372,7 @@ then
   Change_ALL
   [ -d ${ScriptsDir}/node_modules ] && Notify_Version
   Diff_Cron
-  #Npm_Install
+  Npm_Install
   Output_ListJsAdd
   Output_ListJsDrop
   Del_Cron
@@ -383,7 +383,7 @@ else
 fi
 
 ## 调用用户自定义的diy.sh
-if [ "${EnableExtraShell}" = "true" ]; then
+if [[ ${EnableExtraShell} == true ]]; then
   if [ -f ${FileDiy} ]
   then
     . ${FileDiy}
