@@ -96,6 +96,7 @@ function Combin_Sub {
 ## 组合Cookie、Token与互助码，用户自己的放在前面，我的放在后面
 function Combin_All {
   export JD_COOKIE=$(Combin_Sub Cookie)
+  # 东东农场
   export FRUITSHARECODES=$(Combin_Sub ForOtherFruit)
   export PETSHARECODES=$(Combin_Sub ForOtherPet)
   export PLANT_BEAN_SHARECODES=$(Combin_Sub ForOtherBean)
@@ -116,6 +117,8 @@ function Combin_All {
   export JD818_SHARECODES=$(Combin_Sub ForOtherJd818)
   export JDNY_SHARECODES=$(Combin_Sub ForOtherNY)
   export JDGLOBAL_SHARECODES=$(Combin_Sub ForOtherJdglobal)
+  #惊喜财富岛(jd_cfd.js)
+  export JDCFD_SHARECODES=$(Combin_Sub ForOtherJdcfd)
 }
 
 ## 转换JD_BEAN_SIGN_STOP_NOTIFY或JD_BEAN_SIGN_NOTIFY_SIMPLE
